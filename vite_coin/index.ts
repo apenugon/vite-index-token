@@ -26,18 +26,25 @@ const myAccountBlock = createAccountBlock('issueToken', {
     decimals: 2,
     tokenSymbol: 'TestTT'
 });
-*/
+
 const myAccountBlock = createAccountBlock('issueToken', {
     address: address,
-    tokenName: 'testToken',
+    tokenName: 'TT',
     isReIssuable: true,
-    maxSupply: '10000000000000000000000000',
-    isOwnerBurnOnly: false,
+    maxSupply: '100000000000000000000000',
+    isOwnerBurnOnly: true,
     totalSupply: '100000000000000000000000',
-    decimals: 2,
+    decimals: 5,
     tokenSymbol: 'TestT'
-});
+});*/
 
+
+
+const myAccountBlock = createAccountBlock('stakeForQuota', {
+    address,
+    beneficiaryAddress: address,    // Quota recipient
+    amount: '134000000000000000000' // The minimum staking amount is 134 VITE
+});
 
 console.log(myAccountBlock)
 
@@ -51,6 +58,7 @@ async function mintToken() {
     console.log("Here");
     const result = await myAccountBlock.sign().send();
     console.log('send success', result);
+    return 0;
 }
 
-mintToken().catch((alert) => { console.log(alert); });
+mintToken().catch((alert) => { console.log(alert); }).then(() => { console.log("Done") });
